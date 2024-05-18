@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YourMemoryGame</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+</head>
+<body onload="userAvailable() ,blockCards()">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo-container logo nav-link">
+        <img src="img/logo.webp" alt="">
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+      </button>
+      <ul class="nav-menu">
+        <li class="nav-menu-item">
+          <a href="#" class="nav-menu-link nav-link nav-menu-link_active">Home</a>
+        </li>
+        <li class="nav-menu-item">
+          <a href="#" class="nav-menu-link nav-link">About Us</a>
+        </li>
+        <li class="nav-menu-item">
+          <a href="#" class="nav-menu-link nav-link">Contact Us</a>
+        </li>
+        <li class="nav-menu-item" id="btn-login">
+          <a href="#" class="nav-menu-link nav-link"
+            >Login</a>
+        </li>
+      </ul>
+      <ul class="user" id="userBtn">
+        <li class="userl"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main-container">
+    <section class="principal-game">
+      <h1 class="title">Memory Game</h1>
+      <div id="msj">Great!!</div>
+      <button class="button" id="startButton" onclick="startGame()">Play it</button>
+      <div class="game-container">
+        <button class="card-container" id="pc1" onclick="uncover(1)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc2" onclick="uncover(2)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc3" onclick="uncover(3)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc4" onclick="uncover(4)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc5" onclick="uncover(5)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc6" onclick="uncover(6)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc7" onclick="uncover(7)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc8" onclick="uncover(8)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc9" onclick="uncover(9)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc10" onclick="uncover(10)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc11" onclick="uncover(11)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc12" onclick="uncover(12)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc13" onclick="uncover(13)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc14" onclick="uncover(14)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc15" onclick="uncover(15)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+        <button class="card-container" id="pc16" onclick="uncover(16)">
+          <div class="card">
+            <div class="content">
+              <div class="back">
+                <div class="back-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-question">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                    <path d="M10 13l0 .01" />
+                    <path d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474" />
+                  </svg>
+
+                </div>
+              </div>
+              <div class="front">
+
+              </div>
+            </div>
+          </div>
+        </button>
+      </button>
+    </section>
+    <section class="statistics-game">
+
+      <div id="" class="statistic">Successes: <p id="successesCount">00</p>
+      </div>
+      <div id="" class="statistic">Time: <p id="timer">00s</p>
+      </div>
+      <div id="" class="statistic">Movements:<p id="movementsCount">00</p>
+      </div>
+      <div id="" class="statistic">Record: <p id="record">00s</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- modal para Login -->
+  <section class="modal" id="modalLogin">
+    <div class="modalContent">
+      <div class="wrapper">
+        <div class="card-switch">
+            <label class="switch">
+               <input class="toggle" type="checkbox">
+               <span class="slider"></span>
+               <span class="card-side"></span>
+               <div class="flip-card__inner">
+                  <div class="flip-card__front">
+                     <div class="title-modal">Log in</div>
+                     <form action="" class="flip-card__form" id="form-login">
+                        <input type="email" placeholder="Email" name="email" class="flip-card__input">
+                        <button class="flip-card__btn" onclick="loginUser()">Let`s go!</button>
+                     </form>
+                  </div>
+                  <div class="flip-card__back">
+                     <div class="title-modal">Sign up</div>
+                     <form action="" class="flip-card__form" id="form-register">
+                        <input type="name" placeholder="Name" name="name" class="flip-card__input">
+                        <input type="email" placeholder="Email" name="email" class="flip-card__input">
+                        <button class="flip-card__btn" onclick="registerUser()">Confirm!</button>
+                     </form>
+                  </div>
+               </div>
+            </label>
+        </div>   
+   </div>
+    </div>
+  </section>
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+</body>
+</html>
