@@ -15,9 +15,7 @@ var usersArray = [
   }
 ];
 var cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
-cards = cards.sort(()=>{
-    return Math.random() - 0.5;
-})
+
 var uncoverCards = 0;
 var card1;
 var card2;
@@ -385,17 +383,20 @@ function uncover(card){
               userLoginFromStorage = JSON.parse(userLoginFromStorage);
               if (timer < userLoginFromStorage.recordTime) {
                 userLoginFromStorage.recordTime = timer;
+                userLoginFromStorage.lastPlayTime= timer;
                 localStorage.setItem("userLogin", JSON.stringify(userLoginFromStorage));
                   usersArray[userLocate].recordTime = timer;
+                  usersArray[userLocate].lastPlayTime = timer;
                   let record = document.getElementById("record");
-                  record.innerHTML = timer;
+                  record.innerHTML = timer + "s";
                   Swal.fire("Great New record!");
                 
-              } else if(userLoginFromStorage.recordTime == 0){
+              } else if(userLoginFromStorage.recordTime == 0 || userLoginFromStorage.recordTime == 86400){
                 userLoginFromStorage.recordTime = timer;
+                userLoginFromStorage.lastPlayTime= timer;
                 localStorage.setItem("userLogin", JSON.stringify(userLoginFromStorage));
                 let record = document.getElementById("record");
-                record.innerHTML = timer;
+                record.innerHTML = timer + "s";
                 Swal.fire("Great New record!");
                   if(localStorage.getItem("newUser")){
                     localStorage.setItem("newUser", JSON.stringify(userLoginFromStorage));
@@ -427,18 +428,17 @@ function uncover(card){
   }
     }
 
-function blockCards(){
-    for(let i= 0;i<=15;i++){
-        let card = document.getElementById(`pc${i}`);
-        // card.disabled = true;
-        
-    }
-    cardUnck = false;
-}
+// function blockCards(){
+//     for(let i= 0;i<=15;i++){
+//         let card = document.getElementById(`pc${i + 1}`);
+//         card.disabled = true
+//     }
+//     cardUnck = false;
+// }
 
 function unlockCards(){
   for(let i= 0;i<=15;i++){
-    let card = document.getElementById(`pc${i}`);
+    let card = document.getElementById(`pc${i + 1}`);
     card.disabled = false;
     
 }
@@ -509,8 +509,21 @@ function loginUser(){
 
 function startGame(){
   if(localStorage.getItem("userLogin" || userAvailable())){
+    cards = cards.sort(()=>{
+      return Math.random() - 0.5;
+  })
+
+    for(let i= 0;i<=15;i++){
+     let auxcard =  document.getElementById(`pc${i + 1}`)
+      auxcard.setAttribute("class","card-container");
+      auxcard.disabled = false;  
+  }
     let record = document.getElementById("record");
     timer = 0;
+    movements = 0;
+    success = 0;
+    let movementsItem = document.getElementById("movementsCount");
+    movementsItem.innerHTML = movements.toString().padStart(2, "0");
     let aux = localStorage.getItem("userLogin");
     aux = JSON.parse(aux);
     let auxRecord = aux;
@@ -525,6 +538,7 @@ function startGame(){
     timerCount();
     cardUnck = true;
     unlockCards;
+    movements = 0;
   } else{
     GameStarted = false;
     Swal.fire({
@@ -551,6 +565,16 @@ var userBtn = document.getElementById('userBtn');
 
 userBtn.addEventListener('click', (event) => {
   if (event.target.matches('.userl') || event.target.matches('.userl::after')) {
+    clearInterval(timerInterval);
+    timerActive = false;
+    movements = 0;
+    success = 0;
+    timer = 0;
+    document.getElementById("timer").textContent = "00s";
+    let movementsItem = document.getElementById("movementsCount");
+    movementsItem.innerHTML = movements.toString().padStart(2, "0");
+    let succesitem = document.getElementById("successesCount");
+    succesitem.innerHTML = movements.toString().padStart(2, "0");
    localStorage.removeItem("userLogin");
    btnLogin.style.display = "block"
    userBtn.style.display = "none";
@@ -559,6 +583,13 @@ userBtn.addEventListener('click', (event) => {
    let nameUSer = document.getElementById("nameUser");
    nameUSer.style.display = "none";
    nameUSer.innerHTML = " ";
+   let buttonStar = document.getElementById("startButton");
+    buttonStar.style.display = "block";
+   for(let i= 0;i<=15;i++){
+    let auxcard =  document.getElementById(`pc${i + 1}`)
+     auxcard.setAttribute("class","card-container");
+     auxcard.disabled = false;  
+ }
   }
 });
 
@@ -583,7 +614,7 @@ function registerUser() {
   let email = form.email.value;
 
  
-  let newUser = new User(name, email, "00", "00");
+  let newUser = new User(name, email, "86400", "00");
   usersArray.push(newUser);
   localStorage.setItem("userLogin",JSON.stringify(newUser));
   localStorage.setItem("newUser", JSON.stringify(newUser));
