@@ -461,6 +461,7 @@ navToggle.addEventListener("click", () => {
 
 function userAvailable(){
   if(localStorage.getItem("userLogin")){
+    Hello();
     userBtn.style.display = "block";
     btnLogin.style.display = "none";
     GameStarted = true;
@@ -555,6 +556,9 @@ userBtn.addEventListener('click', (event) => {
    userBtn.style.display = "none";
    GameStarted = false;
    console.log("click  exit");
+   let nameUSer = document.getElementById("nameUser");
+   nameUSer.style.display = "none";
+   nameUSer.innerHTML = " ";
   }
 });
 
@@ -585,6 +589,10 @@ function registerUser() {
   localStorage.setItem("newUser", JSON.stringify(newUser));
   modal.style.display = "none";
   btnLogin.style.display = "none";
+  let nameUSer = document.getElementById("nameUser");
+  nameUSer.style.display = "block";
+  nameUSer.innerHTML = newUser.name;
+  Hello();
 }
 function loadNewUser() {
   
@@ -602,8 +610,14 @@ function Hello(){
   let newUser = JSON.parse(localStorage.getItem("newUser"));
   if (user) {
     Swal.fire(`Bienvenido ${user.name}`);
+    let nameUSer = document.getElementById("nameUser");
+    nameUSer.innerHTML = user.name;
+    nameUSer.style.display = "block";
   } else if (newUser){
     Swal.fire(`Bienvenido ${newUser.name}`);
+    let nameUSer = document.getElementById("nameUser");
+    nameUSer.style.display = "block";
+    nameUSer.innerHTML = newUser.name;
   }
   }
 
