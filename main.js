@@ -474,6 +474,7 @@ function userAvailable(){
 }
 
 function loginUser(){
+  
   let userLog = document.getElementById("form-login");
   let auxLog = userLog.email.value;
   for(i = 0; i < usersArray.length; i++){
@@ -487,18 +488,18 @@ function loginUser(){
       Hello();
       break;
     }else if(localStorage.getItem("newUser")){
-      localStorage.setItem("userLogin",localStorage.getItem("newUser"));
-      userBtn.style.display = "block";
-      btnLogin.style.display = "none";
-      GameStarted = true;
-      modal.style.display = "none";
-      Hello();
+        localStorage.setItem("userLogin",localStorage.getItem("newUser"));
+        userBtn.style.display = "block";
+        btnLogin.style.display = "none";
+        GameStarted = true;
+        modal.style.display = "none";
+        Hello();
     } 
     else{
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "User not found!",
+        text: "User not found! please register",
         footer: '<a href="#">Why do I have this issue?</a>'
       });
       console.log(usersArray.email);
